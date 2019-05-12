@@ -1,0 +1,22 @@
+
+---
+
+hosts: Server
+  become: true
+ - name: Add a new user
+    user:
+     name: "{{ user_name }}"
+     comment: "{{ user_des }}"
+     shell: /bin/bash
+      
+      ---
+      
+hosts: Server
+  become: true
+- name: Give SSH access
+  authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ lookup('file', '../../../sshkeys/{{ user_name }}/id_rsa.pub') }}"
+      
+      
