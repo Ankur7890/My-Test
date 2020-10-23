@@ -15,7 +15,7 @@ hosts: Server
   become: true
 - name: Give SSH access
   authorized_key:
-    user: "{{ user_name }}"
+    user: "{{ user_names }}"
     state: present
     key: "{{ lookup('file', '../../../sshkeys/{{ user_name }}/id_rsa.pub') }}"
       
